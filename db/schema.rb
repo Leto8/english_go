@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127093619) do
+ActiveRecord::Schema.define(version: 20171127095005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20171127093619) do
     t.bigint "grading_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "student_id"
+    t.bigint "teacher_id"
     t.index ["assignment_id"], name: "index_lessons_on_assignment_id"
     t.index ["grading_id"], name: "index_lessons_on_grading_id"
     t.index ["submission_id"], name: "index_lessons_on_submission_id"
@@ -61,4 +63,6 @@ ActiveRecord::Schema.define(version: 20171127093619) do
   add_foreign_key "lessons", "assignments"
   add_foreign_key "lessons", "gradings"
   add_foreign_key "lessons", "submissions"
+  add_foreign_key "lessons", "users", column: "student_id"
+  add_foreign_key "lessons", "users", column: "teacher_id"
 end
