@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127081132) do
+ActiveRecord::Schema.define(version: 20171127093619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 20171127081132) do
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.bigint "assignments_id"
-    t.bigint "submissions_id"
-    t.bigint "gradings_id"
+    t.bigint "assignment_id"
+    t.bigint "submission_id"
+    t.bigint "grading_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["assignments_id"], name: "index_lessons_on_assignments_id"
-    t.index ["gradings_id"], name: "index_lessons_on_gradings_id"
-    t.index ["submissions_id"], name: "index_lessons_on_submissions_id"
+    t.index ["assignment_id"], name: "index_lessons_on_assignment_id"
+    t.index ["grading_id"], name: "index_lessons_on_grading_id"
+    t.index ["submission_id"], name: "index_lessons_on_submission_id"
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -58,4 +58,7 @@ ActiveRecord::Schema.define(version: 20171127081132) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lessons", "assignments"
+  add_foreign_key "lessons", "gradings"
+  add_foreign_key "lessons", "submissions"
 end
