@@ -6,7 +6,16 @@ class GradingPolicy < ApplicationPolicy
   end
 
   def create?
-    #needs to be a teacher id
-    true
+    set_grading
+  end
+
+  def update?
+    set_grading
+  end
+
+  private
+
+  def set_grading
+    record.user == user
   end
 end
