@@ -16,5 +16,4 @@ class Api::V1::AssignmentsController < Api::V1::BaseController
     @assignment = Assignment.find(params[:id])
     authorize @assignment
   end
-
 end
