@@ -21,4 +21,4 @@ require 'faker'
   teacher.teaching_lessons.create!(assignment: a, submission: b, grading: c, student: student)
 end
 
-puts "fucking seeds have been fucking created, please use more foul language"
+puts "$&@^ing %&*&@ $*!@"

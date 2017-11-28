@@ -4,5 +4,9 @@ class LessonPolicy < ApplicationPolicy
       scope
     end
   end
+
+  def create?
+    true
+  end
 end
 

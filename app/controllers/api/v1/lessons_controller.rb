@@ -10,6 +10,16 @@ class Api::V1::LessonsController < Api::V1::BaseController
   def show
   end
 
+  def create
+    @lesson = Lesson.new(lesson_params)
+    authorize @lesson
+    if @lesson.save
+      render :show, status: :created
+    else
+      render_error
+    end
+  end
+
   private
 
   def set_lesson
@@ -17,4 +27,7 @@ class Api::V1::LessonsController < Api::V1::BaseController
     authorize @lesson
   end
 
+  def lesson_params
+    params.require(@lesson).permit(:assignment, :submission, :grading, :student, :teacher)
+  end
 end
