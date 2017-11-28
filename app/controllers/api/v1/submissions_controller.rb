@@ -15,7 +15,7 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
     @submission = Submission.new(submission_params)
     @submission.user = current_user
     authorize @submission
-    if @grading.save
+    if @submission.save
       render :show, status: :created
     else
       render_error
@@ -29,4 +29,7 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
     authorize @submission
   end
 
+  def submission_params
+    params.require(@submission).permit(:content, :voice)
+  end
 end
