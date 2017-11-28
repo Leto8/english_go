@@ -28,6 +28,6 @@ class Api::V1::LessonsController < Api::V1::BaseController
   end
 
   def lesson_params
-    params.require(@lesson).permit(:assignment, :submission, :grading, :student, :teacher)
+    params.require(@lesson).permit(:assignment_id, :submission_id, :grading_id, :student_id, :teacher_id)
   end
 end
