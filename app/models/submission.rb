@@ -1,5 +1,5 @@
 class Submission < ApplicationRecord
-  belongs_to :lesson, required: false
+  has_one :lesson, required: false
 
   validates :content, presence: true
   validates :voice, presence: true
