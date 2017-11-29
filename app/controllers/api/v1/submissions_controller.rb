@@ -11,7 +11,6 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
   end
 
   def create
-    # @assignment, getting passed via post?
     @submission = Submission.new(submission_params)
     @submission.user = current_user
     authorize @submission
@@ -30,6 +29,6 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
   end
 
   def submission_params
-    params.require(@submission).permit(:content, :voice)
+    params.require(:submission).permit(:content, :voice)
   end
 end

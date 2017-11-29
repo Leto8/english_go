@@ -11,7 +11,6 @@ class Api::V1::GradingsController < Api::V1::BaseController
   end
 
   def create
-    # still need to tie grading to a submission
     # @submission = submission.find(params[:id])
     @grading = Grading.new(grading_params)
     @grading.user = current_user
@@ -31,7 +30,7 @@ class Api::V1::GradingsController < Api::V1::BaseController
   end
 
   def grading_params
-    params.require(@grading).permit(:content, :voice)
+    params.require(:grading).permit(:content, :voice)
   end
 end
 
