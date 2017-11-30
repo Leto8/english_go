@@ -23,7 +23,7 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
 
   private
 
-  def set_assignment
+  def set_submission
     @submission = Submission.find(params[:id])
     authorize @submission
   end
