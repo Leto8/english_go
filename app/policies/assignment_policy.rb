@@ -1,7 +1,7 @@
 class AssignmentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
 
@@ -9,17 +9,17 @@ class AssignmentPolicy < ApplicationPolicy
     true
   end
 
-  def create?
-    set_assignment
-  end
+  # def create?
+  #   set_assignment
+  # end
 
-  def update?
-    set_assignment
-  end
+  # def update?
+  #   set_assignment
+  # end
 
-  private
+  # private
 
-  def set_assignment
-    record.user == user
-  end
+  # def set_assignment
+  #   record.user == user
+  # end
 end

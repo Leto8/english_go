@@ -16,6 +16,8 @@ class SubmissionPolicy < ApplicationPolicy
   private
 
   def set_submission
-    record.user == user
+    if record.user == user.student_id
+      record.user == user
+    end
   end
 end
