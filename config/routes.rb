@@ -5,11 +5,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :users
-      resources :lessons, shallow: true do
-        resources :assignments
-        resources :submissions
-        resources :gradings
-      end
+      resources :lessons, shallow: true
+      resources :assignments, shallow: true
+      resources :submissions, shallow: true
+      resources :gradings, shallow: true
     end
   end
 end
