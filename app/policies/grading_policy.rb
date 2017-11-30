@@ -16,6 +16,8 @@ class GradingPolicy < ApplicationPolicy
   private
 
   def set_grading
-    record.user == user
+    if record.user == user.teacher_id
+      record.user == user
+    end
   end
 end
