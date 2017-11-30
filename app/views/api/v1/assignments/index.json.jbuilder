@@ -1,3 +1,3 @@
-json.array! @assignment do |assignment|
+json.array! @assignments do |assignment|
   json.extract! assignment, :id, :content, :voice
 end
