@@ -5,6 +5,10 @@ class AssignmentPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
+
   def create?
     set_assignment
   end
