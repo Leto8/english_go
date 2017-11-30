@@ -5,6 +5,10 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    set_user
+  end
+
   def create?
     set_user
   end
@@ -15,7 +19,7 @@ class UserPolicy < ApplicationPolicy
 
   private
 
-  def set_submission
+  def set_user
     record.user == user
   end
 end
