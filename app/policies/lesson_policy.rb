@@ -12,5 +12,10 @@ class LessonPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def update?
+    record.user == user.teacher_id
+    record.user == user
+  end
 end
 
