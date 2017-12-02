@@ -1,13 +1,13 @@
 # config/initializers/simple_token_authentication.rb
 
-SimpleTokenAuthentication.configure do |config|
+# SimpleTokenAuthentication.configure do |config|
 
   # Configure the session persistence policy after a successful sign in,
   # in other words, if the authentication token acts as a signin token.
   # If true, user is stored in the session and the authentication token and
   # email may be provided only once.
   # If false, users must provide their authentication token and email at every request.
-  # config.sign_in_token = false
+  # config.sign_in_token = true
 
   # Configure the name of the HTTP headers watched for authentication.
   #
@@ -35,7 +35,7 @@ SimpleTokenAuthentication.configure do |config|
   #   Then both the header names identifier key and default value are modified accordingly:
   #     `config.header_names = { super_admin: { phone_number: 'X-SuperAdmin-PhoneNumber' } }`
   #
-  # config.header_names = { user: { authentication_token: 'X-User-Token', email: 'X-User-Email' } }
+  # config.header_names = { user: { authentication_token: 'X-User-Token'} }
 
   # Configure the name of the attribute used to identify the user for authentication.
   # That attribute must exist in your model.
@@ -53,7 +53,7 @@ SimpleTokenAuthentication.configure do |config|
   #
   #   `config.identifiers = { super_admin: 'phone_number', user: 'uuid' }`
   #
-  config.identifiers = { user: 'phone_number' }
+  # config.identifiers = { user: 'phone_number' }
 
   # Configure the Devise trackable strategy integration.
   #
@@ -64,4 +64,4 @@ SimpleTokenAuthentication.configure do |config|
   # then signing in through token authentication will be tracked as any other sign in.
   #
   # config.skip_devise_trackable = true
-end
+#end
