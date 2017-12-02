@@ -1,5 +1,5 @@
 class Api::V1::LessonsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User, except: [ :index, :show]
+  # acts_as_token_authentication_handler_for User, except: [ :index, :show]
   before_action :set_lesson, only: [:show, :update]
 
   def index
@@ -11,10 +11,11 @@ class Api::V1::LessonsController < Api::V1::BaseController
   end
 
   def create
+    p 'IS THIS RUNNING'
+    debugger
     @lesson = Lesson.new(lesson_params)
     @lesson.student = current_user
     @lesson.teacher = User.first
-
     authorize @lesson
     p @lesson
     if @lesson.save
@@ -35,6 +36,6 @@ class Api::V1::LessonsController < Api::V1::BaseController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:assignment_id, :student_id, :teacher_id)
+    params.require(:lesson).permit(:assignment_id, :student_id, :teacher_id, :submission_id, :grading_id)
   end
 end
