@@ -7,4 +7,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  def is_teacher?
+    @user.teacher_id
+  end
+
+  def student?
+    @user.student_id
+  end
+
+  def lessons
+    Lesson.where(student_id: self.id)
+  end
 end
