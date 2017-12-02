@@ -11,11 +11,8 @@ class Api::V1::LessonsController < Api::V1::BaseController
   end
 
   def create
-    p 'IS THIS RUNNING'
-    debugger
     @lesson = Lesson.new(lesson_params)
-    @lesson.student = current_user
-    @lesson.teacher = User.first
+    @lesson.teacher = User.first if @lesson.teacher.blank?
     authorize @lesson
     p @lesson
     if @lesson.save
