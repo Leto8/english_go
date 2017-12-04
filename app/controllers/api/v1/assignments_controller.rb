@@ -4,17 +4,18 @@ class Api::V1::AssignmentsController < Api::V1::BaseController
 
   def index
     @assignments = policy_scope(Assignment)
-    # lessons = all of the lessons for the user that requested the list of assignments
-    # user.each
-    assignments = @assignments.map {|assignment| assignment.attributes}
+    # student - see which are submitted and which arent
+    if User.is_student?
+      Assignment.submitted      # need to know which are already completed
+      Assignment.graded         # show those that are graded
+      User.student_assignments  # shows all
+    end
+    # teacher - see an individual student's submission - pass in student_id??
+    if User.is_teacher?
+      User.teacher_assignments
+    end
   end
 
-# 1. Find out who user is based on request header (open id)
-# 2. find user …..User.find_by(open_id: request_open_id)
-# 3. lessons = Lesson.where(user_id: user)
-# 4. map out the attributes of assignments, this will give an array of hashes. Each assignment is a hash, you can add attributes to each assignment.
-# 5. assignments_with_lesson_ids = assignments.map {|assignment| assignment.lesson_id = lessons.find(assignment_id: assignment.id) || nil }
-# 6. This will return a list of assignments with lesson ids for that user
 
 
   def show
