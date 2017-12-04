@@ -24,7 +24,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def create(code)
     open_id = swap_code_for_open_id(code)
     @user = User.new(user_params)
-    @user.user = current_user # is this @user.user or just @user? was previosly @restaurant.user
+    @user.open_id = open_id
     authorize @user
     if @user.save
       render :show, status: :created
