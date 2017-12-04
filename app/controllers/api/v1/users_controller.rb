@@ -21,13 +21,18 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
-  def create(code)
-    open_id = swap_code_for_open_id(code)
-    @user = User.new(user_params)
-    @user.open_id = open_id
+  def create
+    open_id = swap_code_for_open_id(params[:code])
+
+    @user = User.find_or_create_by(open_id: open_id)
+    @user.update(user_params)
+    @user.email = 'spankme@gmail.com'
+    @user.password = 'asdglsakjdgals;'
+    @user.save
+
     authorize @user
     if @user.save
-      render :show, status: :created
+      render json: @user.to_json
     else
       render_error
     end
@@ -36,14 +41,15 @@ class Api::V1::UsersController < Api::V1::BaseController
   private
 
   def swap_code_for_open_id(code)
-    url = "https://api.weixin.qq.com/sns/jscode2session?appid=#{ENV['wechat_appid']}&secret=#{ENV['wechat_secret']}&grant_type=authorization_code&js_code=#{res.code}"
+    url = "https://api.weixin.qq.com/sns/jscode2session?appid=#{ENV['wechat_appid']}&secret=#{ENV['wechat_secret']}&grant_type=authorization_code&js_code=#{code}"
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     headers = {'Content-Type' => 'application/json'}
-    request = Net::HTTP.Get.new(uri, headers)
+    request = Net::HTTP::Get.new(uri, headers)
     response = http.request(request)
-    open_id = response.data.openid
-    return open_id
+    open_id = JSON.parse(response.body)["openid"]
   end
 
   def set_user
@@ -52,7 +58,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:username, :phone_number, :email, :code)
+    params.require(:user).permit(:username)
   end
 
   def render_error
