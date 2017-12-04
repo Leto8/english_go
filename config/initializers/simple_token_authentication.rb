@@ -1,6 +1,6 @@
 # config/initializers/simple_token_authentication.rb
 
-# SimpleTokenAuthentication.configure do |config|
+ SimpleTokenAuthentication.configure do |config|
 
   # Configure the session persistence policy after a successful sign in,
   # in other words, if the authentication token acts as a signin token.
@@ -35,13 +35,13 @@
   #   Then both the header names identifier key and default value are modified accordingly:
   #     `config.header_names = { super_admin: { phone_number: 'X-SuperAdmin-PhoneNumber' } }`
   #
-  # config.header_names = { user: { authentication_token: 'X-User-Token'} }
+  # config.header_names = { user: { authentication_token: 'open_id'} }
 
   # Configure the name of the attribute used to identify the user for authentication.
   # That attribute must exist in your model.
   #
   # The default identifiers follow the pattern:
-  # { entity: 'email' }
+  { entity: 'open_id' }
   #
   # Note: the identifer must match your Devise configuration,
   # see https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#tell-devise-to-use-username-in-the-authentication_keys
@@ -53,7 +53,7 @@
   #
   #   `config.identifiers = { super_admin: 'phone_number', user: 'uuid' }`
   #
-  # config.identifiers = { user: 'phone_number' }
+  # config.identifiers = { user: 'open_id' }
 
   # Configure the Devise trackable strategy integration.
   #
@@ -64,4 +64,4 @@
   # then signing in through token authentication will be tracked as any other sign in.
   #
   # config.skip_devise_trackable = true
-#end
+end

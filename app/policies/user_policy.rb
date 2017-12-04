@@ -5,21 +5,13 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    set_user
-  end
 
   def create?
-    set_user
+    true
   end
 
   def update?
-    set_user
-  end
-
-  private
-
-  def set_user
     record.user == user
   end
+
 end
