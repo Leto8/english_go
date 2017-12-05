@@ -14,8 +14,7 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user.teacher_id
-    record.user == user
+    record.user == current_user || user.teacher_id
   end
 end
 

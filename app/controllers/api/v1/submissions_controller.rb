@@ -1,6 +1,6 @@
 class Api::V1::SubmissionsController < Api::V1::BaseController
-  # acts_as_token_authentication_handler_for User
-  before_action :set_submission, only: [:show， :update]
+  acts_as_token_authentication_handler_for User
+  before_action :set_submission, only: :update
 
   def index
     @submissions = policy_scope(Submission)
@@ -12,9 +12,10 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
 
   def create
     @submission = Submission.new(submission_params)
-    @submission.user = User.find_by(:open_id)
     authorize @submission
     if @submission.save
+      @lesson = Lesson.find_by(id: params['lesson_id'])
+      @lesson.update(submission_id: @submission.id)
       render :show, status: :created
     else
       render_error

@@ -12,6 +12,7 @@ gem 'pundit'
 gem 'simple_token_authentication'
 gem 'faker'
 gem 'chartkick'
+gem 'qiniu'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

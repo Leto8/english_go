@@ -4,6 +4,13 @@ class Api::V1::LessonsController < Api::V1::BaseController
 
   def index
     @lessons = policy_scope(Lesson)
+    @user = User.find_by(open_id: params['open_id'])
+    # if we user isn't fetched from backend this will fail
+    @student = User.find(params[:student_id])
+    # Lesson.submitted
+    # Lesson.graded
+    @user.student_lessons
+    render json: @user.student_lessons
   end
 
 
@@ -12,9 +19,9 @@ class Api::V1::LessonsController < Api::V1::BaseController
 
   def create
     @lesson = Lesson.new(lesson_params)
+    @lesson.student_id = current_user.id
     @lesson.teacher = User.first if @lesson.teacher.blank?
     authorize @lesson
-    p @lesson
     if @lesson.save
       render :show, status: :created
     else

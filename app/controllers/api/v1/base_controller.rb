@@ -4,9 +4,9 @@ class Api::V1::BaseController < ActionController::Base
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
-  rescue_from StandardError,                with: :internal_server_error
-  rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  # rescue_from StandardError,                with: :internal_server_error
+  # rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
+  # rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   private
 
@@ -28,4 +28,9 @@ class Api::V1::BaseController < ActionController::Base
     end
     render json: response, status: :internal_server_error
   end
+
+  def authenticate_open_id
+    @user = User.find_by(open_id: params['open_id'])
+  end
+
 end
