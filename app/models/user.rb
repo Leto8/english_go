@@ -5,20 +5,21 @@ class User < ApplicationRecord
   has_many :student_lessons, class_name: "Lesson", foreign_key: "student_id"
   has_many :student_assignments, through: :student_lessons, source: "assignment"
   has_many :teacher_assignments, through: :teacher_lessons, source: "assignment"
+  has_many :submissions, through: :student_lessons, source: "submission"
+  has_many :gradings, through: :student_lessons, source: "grading"
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  def is_teacher?
-    teaching_lessons.any?
-  end
+
+  scope :students, -> { where(is_teacher: false) }
+  scope :teachers, -> { where(is_teacher: true) }
+
 
   def is_student?
-    student_lessons.any?
+    !is_teacher
   end
 
-  # def lessons
-  #   Lesson.where(student_id: self.id)
-  # end
 end
