@@ -10,9 +10,16 @@
 
 require 'faker'
 
+# 12 assignments
+a = Assignment.create!(content: Faker::HarryPotter.quote)
+# 1 teacher
+teacher = User.create!(wechat_id: Faker::HarryPotter.unique.character)
+# 10 students
+student = User.create!(wechat_id: Faker::StarWars.character)
+
 10.times do
-  teacher = User.create!(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, phone_number: Faker::Number.number(10), password: "fuckyou")
-  student = User.create!(username: Faker::HarryPotter.unique.character, email: Faker::Internet.email, phone_number: Faker::Number.number(10), password: "fuckyou")
+  teacher = User.create!(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "fuckyou")
+  student = User.create!(username: Faker::HarryPotter.unique.character, email: Faker::Internet.email, password: "fuckyou")
   a = Assignment.create!(content: Faker::VentureBros.quote, voice: Faker::VentureBros.organization)
   b = Submission.create!(content: Faker::HitchhikersGuideToTheGalaxy.quote, voice: Faker::StarWars.quote)
   c = Grading.create!(content: Faker::WorldOfWarcraft.quote, voice: Faker::HarryPotter.quote)
