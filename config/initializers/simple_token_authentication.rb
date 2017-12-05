@@ -35,13 +35,13 @@
   #   Then both the header names identifier key and default value are modified accordingly:
   #     `config.header_names = { super_admin: { phone_number: 'X-SuperAdmin-PhoneNumber' } }`
   #
-  # config.header_names = { user: { authentication_token: 'open_id'} }
+  config.header_names = { user: { authentication_token: 'authentication_token'} }
 
   # Configure the name of the attribute used to identify the user for authentication.
   # That attribute must exist in your model.
   #
   # The default identifiers follow the pattern:
-  { entity: 'open_id' }
+  # { entity: 'authentication_token' }
   #
   # Note: the identifer must match your Devise configuration,
   # see https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#tell-devise-to-use-username-in-the-authentication_keys
@@ -53,7 +53,7 @@
   #
   #   `config.identifiers = { super_admin: 'phone_number', user: 'uuid' }`
   #
-  # config.identifiers = { user: 'open_id' }
+  config.identifiers = { user: 'open_id' }
 
   # Configure the Devise trackable strategy integration.
   #

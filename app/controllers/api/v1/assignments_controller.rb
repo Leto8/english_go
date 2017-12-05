@@ -1,6 +1,5 @@
 class Api::V1::AssignmentsController < Api::V1::BaseController
-  # acts_as_token_authentication_handler_for User
-  before_action :set_assignment, only: [:show]
+  acts_as_token_authentication_handler_for User
 
   def index
     @assignments = policy_scope(Assignment)
@@ -8,7 +7,7 @@ class Api::V1::AssignmentsController < Api::V1::BaseController
     # if we user isn't fetched from backend this will fail
 
     if @user.is_student? == true
-      @user.submitted      # need to know which are already completed
+      Lesson.submitted      # need to know which are already completed
       Lesson.graded         # show those that are graded
       @user.student_assignments  # shows all
     end
@@ -21,11 +20,7 @@ class Api::V1::AssignmentsController < Api::V1::BaseController
 
 
   def show
-  end
-
-  private
-
-  def set_assignment
+    @user = User.find_by(open_id: params['open_id'])
     @assignment = Assignment.find(params[:id])
     authorize @assignment
   end

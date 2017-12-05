@@ -10,9 +10,7 @@ class Assignment < ApplicationRecord
     Assignment.joins(:lessons).where(submission_id: self.id)
   end
 
-   # def graded
-  #   return false if Lesson.where(grading_id: self.id).nil?
-  #   y = Lesson.where(grading_id: self.id).pluck(:assignment_id)
-  #   Assignment.where(id: y)
-  # end
+  def self.graded
+    Assignment.joins(:lessons).where(grading_id: self.id)
+  end
 end

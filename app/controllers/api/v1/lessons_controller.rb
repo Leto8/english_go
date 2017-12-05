@@ -1,5 +1,5 @@
 class Api::V1::LessonsController < Api::V1::BaseController
-  # acts_as_token_authentication_handler_for User
+  acts_as_token_authentication_handler_for User
   before_action :set_lesson, only: [:show, :update]
 
   def index
@@ -12,9 +12,9 @@ class Api::V1::LessonsController < Api::V1::BaseController
 
   def create
     @lesson = Lesson.new(lesson_params)
+    @lesson.student_id = current_user.id
     @lesson.teacher = User.first if @lesson.teacher.blank?
     authorize @lesson
-    p @lesson
     if @lesson.save
       render :show, status: :created
     else

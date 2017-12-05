@@ -6,7 +6,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def create?
-    set_submission
+    true
   end
 
   def update?
@@ -16,8 +16,6 @@ class SubmissionPolicy < ApplicationPolicy
   private
 
   def set_submission
-    if record.user == user.student_id
-      record.user == user
-    end
+    record.user == user.student_id
   end
 end
