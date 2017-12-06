@@ -9,8 +9,8 @@ class Api::V1::LessonsController < Api::V1::BaseController
     @student = User.find(params[:student_id])
     # Lesson.submitted
     # Lesson.graded
-    @user.student_lessons
-    render json: @user.student_lessons
+    @student.student_lessons
+    render json: @student.student_lessons
   end
 
 
