@@ -11,8 +11,12 @@ class Api::V1::LessonsController < Api::V1::BaseController
     render json: @student.student_lessons
   end
 
-
   def show
+    @lesson = Lesson.find(params[:id])
+    submission = @lesson.submission.try(:attributes)
+    grading = @lesson.grading.try(:attributes)
+    result = @lesson.attributes.merge(submission: submission, grading: grading)
+    render json: result
   end
 
   def create
