@@ -5,6 +5,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   require 'net/http'
   require "uri"
   require "json"
+  require "faker"
 
    def index
     @user = policy_scope(User)
@@ -26,8 +27,8 @@ class Api::V1::UsersController < Api::V1::BaseController
 
     @user = User.find_or_create_by(open_id: open_id)
     @user.update(user_params)
-    @user.email = 'spankme@gmail.com'
-    @user.password = 'asdglsakjdgals;'
+    @user.email = Faker::Internet.email
+    @user.password = 'fuckthis'
     @user.save
 
     authorize @user
@@ -58,7 +59,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:username)
+    params.require(:user).permit(:username, :avatar)
   end
 
   def render_error
