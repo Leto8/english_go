@@ -6,18 +6,10 @@ class GradingPolicy < ApplicationPolicy
   end
 
   def create?
-    set_grading
+    true
   end
 
   def update?
-    set_grading
-  end
-
-  private
-
-  def set_grading
-    if record.user == user.teacher_id
-      record.user == user
-    end
+    record.user == current_user
   end
 end

@@ -7,7 +7,7 @@ Qiniu.establish_connection! access_key: 'PJP0bjvUkPBLO3PmSgAfuVyEh9aTAlzYmiItmRC
 
 bucket = 'englishgo'
 # 上传到七牛后保存的文件名
-key = 'testingagain.png'
+key = 'testvoice.silk'
 # 构建上传策略，上传策略的更多参数请参照 http://developer.qiniu.com/article/developer/security/put-policy.html
 put_policy = Qiniu::Auth::PutPolicy.new(
     bucket, # 存储空间

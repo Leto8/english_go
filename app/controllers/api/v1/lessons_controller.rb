@@ -5,10 +5,8 @@ class Api::V1::LessonsController < Api::V1::BaseController
   def index
     @lessons = policy_scope(Lesson)
     @user = User.find_by(open_id: params['open_id'])
-    # if we user isn't fetched from backend this will fail
+    # fails - nil result
     @student = User.find(params[:student_id])
-    # Lesson.submitted
-    # Lesson.graded
     @student.student_lessons
     render json: @student.student_lessons
   end
