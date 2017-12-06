@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :assignments, shallow: true
       resources :submissions, shallow: true
       resources :gradings, shallow: true
+      get :file_upload, to: 'submissions#qiniu'
     end
   end
 end
