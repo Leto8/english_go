@@ -7,7 +7,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   require "json"
   require "faker"
 
-   def index
+  def index
     @user = policy_scope(User)
   end
 

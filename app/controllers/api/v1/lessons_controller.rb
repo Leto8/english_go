@@ -6,16 +6,29 @@ class Api::V1::LessonsController < Api::V1::BaseController
     @lessons = policy_scope(Lesson)
     @user = User.find_by(open_id: params['open_id'])
     # fails - nil result
-    @student = User.find(params[:student_id])
-    @student.student_lessons
-    render json: @student.student_lessons
+
+    from_teacher = params[:from_teacher] == "true"
+
+    if from_teacher
+      @teacher = @user
+      @lessons = @teacher.teaching_lessons
+
+    else
+
+      @student = @user
+      @lessons = @student.student_lessons
+
+    end
+
+    render json: @lessons
   end
 
   def show
     @lesson = Lesson.find(params[:id])
     submission = @lesson.submission.try(:attributes)
+    assignment = @lesson.assignment.try(:attributes)
     grading = @lesson.grading.try(:attributes)
-    result = @lesson.attributes.merge(submission: submission, grading: grading)
+    result = @lesson.attributes.merge(submission: submission, grading: grading, assignment: assignment)
     render json: result
   end
 
@@ -32,6 +45,17 @@ class Api::V1::LessonsController < Api::V1::BaseController
   end
 
   def update
+    submission = @lesson.submission || Submission.new(lesson: @lesson)
+    submission.update voice: params[:submission_voice] if params[:submission_voice]
+
+
+    grading = @lesson.grading || Grading.new(lesson: @lesson)
+    grading.update voice: params[:grading_voice] if params[:grading_voice]
+
+    submission = @lesson.submission.try(:attributes)
+    grading = @lesson.grading.try(:attributes)
+    result = @lesson.attributes.merge(submission: submission, grading: grading)
+    render json: result
   end
 
   private
