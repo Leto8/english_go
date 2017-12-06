@@ -11,11 +11,11 @@ class Api::V1::GradingsController < Api::V1::BaseController
   end
 
   def create
-    # @submission = submission.find(params[:id])
     @grading = Grading.new(grading_params)
-    @grading.user = current_user
     authorize @grading
     if @grading.save
+      @lesson = Lesson.find_by(id: params['lesson_id'])
+      @lesson.update(grading_id: @grading.id)
       render :show, status: :created
     else
       render_error

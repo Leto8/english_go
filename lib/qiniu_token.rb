@@ -1,5 +1,6 @@
 require 'qiniu'
 
+# key = 'testingagain.silk'
 
 class QiniuToken(key)
   self.def get_token
