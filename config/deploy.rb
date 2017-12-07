@@ -8,11 +8,11 @@ require "mina/scp"
 
 @root_path = '/var/www/englishgo'
 
-set :domain, 'wagon'
+set :domain, '101.37.31.161'
 set :deploy_to, @root_path
-# set :repository, 'https://github.com/Leto8/english_go.git'
+set :repository, 'https://github.com/Leto8/english_go.git'
 
-set :branch, 'master'
+set :branch, 'mina'
 # set :branch, 'master'
 
 set :rsync_options, %w[

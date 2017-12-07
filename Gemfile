@@ -13,9 +13,9 @@ gem 'simple_token_authentication'
 gem 'faker'
 gem 'chartkick'
 gem 'qiniu'
-gem 'mina'
-gem 'mina-rsync', require: false
-gem 'mina-scp', require: false
+gem 'mina', '0.3.8'
+gem 'mina-rsync', '1.1.0', require: false
+gem 'mina-scp', '0.1.2', require: false
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
