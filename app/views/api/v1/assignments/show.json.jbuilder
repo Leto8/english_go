@@ -1,1 +1,1 @@
-json.extract! @assignment, :id, :content, :voice
+json.extract! @assignment, :id, :content, :title, :keywords
