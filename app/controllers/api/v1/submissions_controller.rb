@@ -11,7 +11,7 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
 
   def qiniu
     skip_authorization
-    skip_policy_scope
+    # skip_policy_scope
     token = get_token
     render json: {key: @key, token: token}
   end
@@ -34,6 +34,8 @@ class Api::V1::SubmissionsController < Api::V1::BaseController
   private
 
   def get_token
+    # skip_authorization!
+    # skip_policy_scope!
     @key = Time.now.to_i.to_s + 'recording'
     Qiniu.establish_connection! access_key: 'PJP0bjvUkPBLO3PmSgAfuVyEh9aTAlzYmiItmRCm',
                                 secret_key: 'wiuHuXtZNXR5URJDt8TvqjbIq9mQrdczkPfiN3l6'
