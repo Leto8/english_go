@@ -68,7 +68,7 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
-      # queue "sudo supervisorctl restart englishgo:englishgo-web-1"
+      queue "sudo supervisorctl restart englishgo:englishgo-web-1"
     end
   end
 end
