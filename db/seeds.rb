@@ -1,12 +1,10 @@
 # # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-# #
-# # Examples:
-# #
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
 
-# # use db:reset instead!
+Assignment.destroy_all
+Submission.destroy_all
+User.destroy_all
+Grading.destroy_all
+Lesson.destroy_all
 
 require 'faker'
 
@@ -23,11 +21,6 @@ require 'faker'
   Assignment.create(content: "Hi Everyone! Let's talk about money. We all have financial goals, some more clearly defined than others. Tell us about your financial goals. Do you plan them out week to week, monthly, yearly, or do you have another system? Talk about your goals and how you plan to achieve them. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Personal Finance", keywords: "Investments, Financial Independence, Savings")
   Assignment.create(content: "Hi Everyone! Let's talk about money. We all have financial goals, some more clearly defined than others. Tell us about your financial goals. Do you plan them out week to week, monthly, yearly, or do you have another system? Talk about your goals and how you plan to achieve them. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Personal Finance", keywords: "Investments, Financial Independence, Savings")
   Assignment.create(content: "Hi Everyone! Let's talk about money. We all have financial goals, some more clearly defined than others. Tell us about your financial goals. Do you plan them out week to week, monthly, yearly, or do you have another system? Talk about your goals and how you plan to achieve them. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Personal Finance", keywords: "Investments, Financial Independence, Savings")
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
 
 
 # 1 teacher
