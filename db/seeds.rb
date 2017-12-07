@@ -1,12 +1,10 @@
 # # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-# #
-# # Examples:
-# #
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
 
-# # use db:reset instead!
+Lesson.destroy_all
+User.destroy_all
+Assignment.destroy_all
+Submission.destroy_all
+Grading.destroy_all
 
 require 'faker'
 
@@ -19,23 +17,18 @@ require 'faker'
   Assignment.create(content: "Hi Everyone! Today's topic will be talking about how technology has impacted your life. In our world, it's hard to escape technology. Maybe you use a smartphone every day, or perhaps you use a computer at work. Have you video chatted with a friend in a distant city, or use an app to be more efficient? Choose a point and discuss: What is the biggest impact technology has had on your life? Which technologies are you most looking forward to in the future? Is there one specific technology you hope will be created that doesn't exist yet? Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Life and Technology", keywords: "Futuristic, Optimistic, Pessimistic, Simplicity")
   Assignment.create(content: "Hi Everyone! Today's topic will be talking about the role of relaxation in life. We've talked about lifestyles before and we know we all have different routines. Relaxation plays a role in these routines, whether you consider yourself highly productive, or maybe a bit lazy. Talk about the role relaxation plays in your life and what you like to do to relax. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Relaxation", keywords: "Burnout, Stamina, Laziness, Serenity")
   Assignment.create(content: "Hi Everyone! Today's topic is all about speaking in a way that people will want to listen. Remember, it's not just WHAT you say, but HOW you say it! Please watch the following TED talk: (http://v.youku.com/v_show/id_XNzQyMzExODI0.html?spm=a2h0k.8191407.0.0&from=s1.8-1-1.2) . After you've watched the video, talk about what main points you'd like to improve are. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Motivation", keywords: "On track, Encouragment, Persistence, Determination")
-  Assignment.create(content: "Hi Everyone! Our topic for today will be talking about motivation. Please make sure to create a spoken entry for me to be able to give you feedback on. We all need to be motivated. Whether you need to be motivated for work, you want to achieve a personal goal (like learning a language), or overcome a challenge, we all need motivational boost from time to time.Choose a point and discuss: What do you do to get back in the zone? Why does this seem to work so well for you? Why does your motivation fade over time? Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know", voice: Faker::VentureBros.organization)
+  Assignment.create(content: "Hi Everyone! Our topic for today will be talking about motivation. Please make sure to create a spoken entry for me to be able to give you feedback on. We all need to be motivated. Whether you need to be motivated for work, you want to achieve a personal goal (like learning a language), or overcome a challenge, we all need motivational boost from time to time.Choose a point and discuss: What do you do to get back in the zone? Why does this seem to work so well for you? Why does your motivation fade over time? Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know", title: Faker::VentureBros.organization)
   Assignment.create(content: "Hi Everyone! Let's talk about money. We all have financial goals, some more clearly defined than others. Tell us about your financial goals. Do you plan them out week to week, monthly, yearly, or do you have another system? Talk about your goals and how you plan to achieve them. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Personal Finance", keywords: "Investments, Financial Independence, Savings")
   Assignment.create(content: "Hi Everyone! Let's talk about money. We all have financial goals, some more clearly defined than others. Tell us about your financial goals. Do you plan them out week to week, monthly, yearly, or do you have another system? Talk about your goals and how you plan to achieve them. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Personal Finance", keywords: "Investments, Financial Independence, Savings")
   Assignment.create(content: "Hi Everyone! Let's talk about money. We all have financial goals, some more clearly defined than others. Tell us about your financial goals. Do you plan them out week to week, monthly, yearly, or do you have another system? Talk about your goals and how you plan to achieve them. Please make sure that you complete the assignment by tomorrow so I can give you feedback. If you have any questions about the assignment or words, please let me know.", title: "Personal Finance", keywords: "Investments, Financial Independence, Savings")
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
 
 
 # 1 teacher
-teacher = User.create(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "fuckyou", is_teacher: true)
+teacher = User.create(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "theman", is_teacher: true)
 
 # 10 students
 10.times do
-  User.create(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "fuckyou", is_teacher: false)
+  User.create(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "profanity", is_teacher: false)
 end
 
 # lessons per student
