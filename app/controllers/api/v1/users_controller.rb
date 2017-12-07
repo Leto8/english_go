@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  # acts_as_token_authentication_handler_for User, except: [ :index, :show ]
+  acts_as_token_authentication_handler_for User, except: [ :index, :create ]
   before_action :set_user, only: [ :show, :update ]
 
   require 'net/http'

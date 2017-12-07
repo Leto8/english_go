@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206124019) do
+ActiveRecord::Schema.define(version: 20171207100409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(version: 20171206124019) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "content"
-    t.string "voice"
+    t.string "keywords"
+    t.string "title"
   end
 
   create_table "gradings", force: :cascade do |t|
@@ -64,7 +65,6 @@ ActiveRecord::Schema.define(version: 20171206124019) do
     t.datetime "updated_at", null: false
     t.string "authentication_token", limit: 30
     t.string "username"
-    t.bigint "phone_number"
     t.string "open_id"
     t.boolean "is_teacher"
     t.string "avatar"

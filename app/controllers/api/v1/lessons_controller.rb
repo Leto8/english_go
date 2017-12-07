@@ -1,10 +1,10 @@
 class Api::V1::LessonsController < Api::V1::BaseController
-  # sacts_as_token_authentication_handler_for User
+  acts_as_token_authentication_handler_for User
   before_action :set_lesson, only: [:show, :update]
 
   def index
     @lessons = policy_scope(Lesson)
-    @user = User.find_by(open_id: params['open_id'])
+    @user = User.find_by(id: params['user_id'])
     # fails - nil result
 
     from_teacher = params[:from_teacher] == "true"

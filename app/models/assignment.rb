@@ -3,7 +3,7 @@ class Assignment < ApplicationRecord
   # has_many :users, through: :lesson
 
   validates :content, presence: true
-  validates :voice, presence: true
+  validates :title, presence: true
 
   def self.submitted
     # return false if Lesson.where(submission_id: self.id).nil?
