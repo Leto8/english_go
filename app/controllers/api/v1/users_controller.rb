@@ -26,9 +26,10 @@ class Api::V1::UsersController < Api::V1::BaseController
     open_id = swap_code_for_open_id(params[:code])
 
     @user = User.find_or_create_by(open_id: open_id)
+
     @user.update(user_params)
     @user.email = Faker::Internet.email
-    @user.password = 'fuckthis'
+    @user.password = 'insertprofanity'
     @user.save
 
     authorize @user
