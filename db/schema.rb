@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20171206124019) do
     t.datetime "updated_at", null: false
     t.string "authentication_token", limit: 30
     t.string "username"
+    t.bigint "phone_number"
     t.string "open_id"
     t.boolean "is_teacher"
     t.string "avatar"
