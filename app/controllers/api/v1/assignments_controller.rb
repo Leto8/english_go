@@ -1,5 +1,5 @@
 class Api::V1::AssignmentsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User
+  # acts_as_token_authentication_handler_for User
 
   def index
     @assignments = policy_scope(Assignment)
