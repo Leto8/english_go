@@ -12,7 +12,6 @@ class Api::V1::LessonsController < Api::V1::BaseController
     if from_teacher
       @teacher = @user
       @lessons = @teacher.teaching_lessons
-
     else
 
       @student = @user
