@@ -24,7 +24,7 @@ require 'faker'
 
 
 # 1 teacher
-teacher = User.create(username: "Adam", email: "kalimi@yahoo.com", password: "teacher", open_id: "", is_teacher: true)
+teacher = User.create(username: "Adam", email: "kalimi@yahoo.com", password: "teacher", open_id: "oSjX30Nw1q-8y93FGOZXq6WTbOWY", is_teacher: true)
 
 # 10 students
 10.times do
