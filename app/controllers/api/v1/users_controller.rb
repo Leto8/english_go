@@ -32,9 +32,21 @@ class Api::V1::UsersController < Api::V1::BaseController
     @user.password = 'insertprofanity'
     @user.save
 
+    # get students from the user
+
+
     authorize @user
     if @user.save
-      render json: @user.to_json
+
+      if @user.is_teacher
+        students = @user.students
+
+        result = @user.attributes.merge({ students: students.map{|s| s.attributes.slice("id", "avatar")}})
+      else
+        result = @user
+      end
+
+      render json: result
     else
       render_error
     end

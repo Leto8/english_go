@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :submissions, through: :student_lessons, source: "submission"
   has_many :gradings, through: :student_lessons, source: "grading"
 
+  has_many :students, through: :teaching_lessons, source: "student"
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

@@ -26,33 +26,12 @@ require 'faker'
 # 1 teacher
 teacher = User.create(username: "Adam", email: "kalimi@yahoo.com", password: "teacher", open_id: "oSjX30Nw1q-8y93FGOZXq6WTbOWY", is_teacher: true)
 
-# 10 students
-10.times do
-  User.create(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "profanity", is_teacher: false)
-end
+# # 10 students
+# 10.times do
+#   User.create(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "profanity", is_teacher: false)
+# end
 
-# lessons per student
-# every students have random number of submissions to lessons
-User.students.each do |student|
-  Assignment.all.each do |a|
-    if [true, false].sample
-      s = Submission.create(content: Faker::HitchhikersGuideToTheGalaxy.quote, voice: Faker::VentureBros.organization)
-      student.student_lessons.create(submission: s, assignment: a, teacher: teacher)
-    end
-  end
-end
-
-# every student's submission, the teacher randomly grades
-User.students.each do |student|
-  student.student_lessons.submitted.each do |lesson|
-    if [true, false].sample
-      lesson.grading = Grading.create(content: Faker::WorldOfWarcraft.quote, voice: Faker::VentureBros.organization)
-      lesson.save
-    end
-  end
-end
-
-#
+# # lessons per student
 leto = User.create(username: "Forrest", email: "letosleepingdragon@gmail.com", password: "student", open_id: "oSjX30DE9BEEvpe7SRhtaiiPyuiQ", is_teacher: false)
 Lesson.create(assignment_id: 1, student_id: leto.id, teacher_id: teacher.id)
 Lesson.create(assignment_id: 2, student_id: leto.id, teacher_id: teacher.id)
@@ -66,3 +45,24 @@ Lesson.create(assignment_id: 9, student_id: leto.id, teacher_id: teacher.id)
 Lesson.create(assignment_id: 10, student_id: leto.id, teacher_id: teacher.id)
 Lesson.create(assignment_id: 11, student_id: leto.id, teacher_id: teacher.id)
 Lesson.create(assignment_id: 12, student_id: leto.id, teacher_id: teacher.id)
+# # every students have random number of submissions to lessons
+User.students.each do |student|
+  Assignment.all.each do |a|
+    if [true, false].sample
+      s = Submission.create(content: Faker::HitchhikersGuideToTheGalaxy.quote, voice: Faker::VentureBros.organization)
+      student.student_lessons.create(submission: s, assignment: a, teacher: teacher)
+    end
+  end
+end
+
+# # every student's submission, the teacher randomly grades
+# User.students.each do |student|
+#   student.student_lessons.submitted.each do |lesson|
+#     if [true, false].sample
+#       lesson.grading = Grading.create(content: Faker::WorldOfWarcraft.quote, voice: Faker::VentureBros.organization)
+#       lesson.save
+#     end
+#   end
+# end
+
+#
