@@ -10,6 +10,7 @@ body {
   background: #DDD7D1;
 }
 
+
 #map {
   position: absolute;
   top: 0px;
@@ -195,6 +196,11 @@ h1, h3 {
 
 a {
   color: white;
+}
+
+.qrcode {
+  height: 200px;
+  width: 200px;
 }
 
 .button {
