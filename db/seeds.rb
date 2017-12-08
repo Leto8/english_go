@@ -24,7 +24,7 @@ require 'faker'
 
 
 # 1 teacher
-teacher = User.create(username: Faker::LeagueOfLegends.unique.champion, email: Faker::Internet.email, password: "theman", is_teacher: true)
+teacher = User.create(username: "Adam", email: "kalimi@yahoo.com", password: "teacher", open_id: "", is_teacher: true)
 
 # 10 students
 10.times do
@@ -51,3 +51,18 @@ User.students.each do |student|
     end
   end
 end
+
+#
+leto = User.create(username: "Forrest", email: "letosleepingdragon@gmail.com", password: "student", open_id: "oSjX30DE9BEEvpe7SRhtaiiPyuiQ", is_teacher: false)
+Lesson.create(assignment_id: 1, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 2, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 3, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 4, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 5, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 6, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 7, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 8, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 9, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 10, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 11, student_id: leto.id, teacher_id: teacher.id)
+Lesson.create(assignment_id: 12, student_id: leto.id, teacher_id: teacher.id)
